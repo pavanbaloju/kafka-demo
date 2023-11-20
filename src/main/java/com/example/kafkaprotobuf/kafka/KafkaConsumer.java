@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class KafkaConsumer {
 
     @KafkaListener(topics = "test", groupId = "test", containerFactory = "kafkaListenerContainerFactory")
-    public void listenGroupFoo(DynamicMessage message) throws InvalidProtocolBufferException {
+    public void listen(DynamicMessage message) throws InvalidProtocolBufferException {
         PersonOuterClass.Person person = PersonOuterClass.Person.parseFrom(message.toByteArray());
         System.out.println("Received Message: " + person);
     }

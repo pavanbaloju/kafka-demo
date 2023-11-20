@@ -27,6 +27,7 @@ import java.util.Map;
 public class KafkaConfig {
 
     public static final String LOCALHOST_19092 = "localhost:19092";
+    public static final String LOCALHOST_8081 = "http://localhost:8081/";
 
     @Bean
     public ProducerFactory<String, PersonOuterClass.Person> producerFactory() {
@@ -42,7 +43,7 @@ public class KafkaConfig {
             KafkaProtobufSerializer.class);
         configProps.put(
             "schema.registry.url",
-            "http://localhost:8081/"
+            LOCALHOST_8081
         );
         return new DefaultKafkaProducerFactory<>(configProps);
     }
@@ -67,7 +68,7 @@ public class KafkaConfig {
             KafkaProtobufDeserializer.class);
         props.put(
             "schema.registry.url",
-            "http://localhost:8081/"
+            LOCALHOST_8081
         );
         return new DefaultKafkaConsumerFactory<>(props);
     }
