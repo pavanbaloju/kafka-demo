@@ -34,7 +34,7 @@ class KafkaProtoProviderVerificationTest {
 
     @PactVerifyProvider("message with person details")
     MessageAndMetadata verifyPersonMessage() {
-        PersonOuterClass.Person person = PersonOuterClass.Person.newBuilder().setName("test").setAge(200).build();
+        PersonOuterClass.Person person = PersonOuterClass.Person.newBuilder().setName("Pavan").setAge(50).build();
         Map<String, Object> metadata = Map.of("content-type", "application/protobuf");
 
         return new MessageAndMetadata(person.toByteArray(), metadata);

@@ -30,7 +30,9 @@ class KafkaProtoConsumerContractTest {
                 "message.contents", Map.of(
                     "pact:proto", PactBuilder.filePath("src/main/proto/Person.proto"),
                     "pact:message-type", "Person",
-                    "pact:content-type", "application/protobuf"
+                    "pact:content-type", "application/protobuf",
+                    "name", "matching(equalTo, 'Pavan')",
+                    "age", "matching(equalTo, 50)"
                 )
             ))
             .toPact();
@@ -40,7 +42,7 @@ class KafkaProtoConsumerContractTest {
     @PactTestFor(pactMethod = "kafkaProtoConsumerPact")
     void validatePersonMessage(V4Interaction.AsynchronousMessage message) throws InvalidProtocolBufferException {
         PersonOuterClass.Person person = PersonOuterClass.Person.parseFrom(message.getContents().getContents().getValue());
-        assertThat(person.getName()).isEmpty();
-        assertThat(person.getAge()).isZero();
+        assertThat(person.getName()).isEqualTo("Pavan");
+        assertThat(person.getAge()).isEqualTo(50);
     }
 }
