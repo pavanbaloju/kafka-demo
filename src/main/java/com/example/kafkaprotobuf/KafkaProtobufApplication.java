@@ -30,7 +30,7 @@ public class KafkaProtobufApplication {
                 .build();
 
             kafkaProducer.sendMessage("test", person);
-            Thread.sleep(Duration.ofSeconds(5));
+            Thread.sleep(5000);
         }
     }
 }
